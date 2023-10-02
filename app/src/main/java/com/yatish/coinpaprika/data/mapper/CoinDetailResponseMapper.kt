@@ -11,6 +11,7 @@ class CoinDetailResponseMapper @Inject constructor(): Mapper<CoinDetail, CoinDet
             name = input.name,
             description = input.description,
             symbol = input.symbol,
+            isActive = input.isActive,
             logo = input.logo,
             rank = input.rank,
             isNew = input.isNew,

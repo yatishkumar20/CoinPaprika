@@ -7,4 +7,5 @@ object Constants {
     const val TOO_MANY_REQUEST = "Too many requests"
     const val UNKNOWN = "Unknown"
     const val UNKNOWN_ERROR = "An Unknown error occurred"
+    const val PARAM_COIN_ID = "coinId"
 }
