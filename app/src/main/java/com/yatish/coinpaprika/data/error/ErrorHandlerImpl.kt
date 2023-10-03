@@ -18,7 +18,7 @@ class ErrorHandlerImpl @Inject constructor(): ErrorHandler {
                     else -> ErrorEntity.NetWork
                 }
             }
-            else -> ErrorEntity.NetWork
+            else -> ErrorEntity.Unknown
 
         }
     }

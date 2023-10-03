@@ -4,6 +4,8 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.yatish.coinpaprika.data.mapper.CoinErrorMapper
+import com.yatish.coinpaprika.domain.model.Coin
 import com.yatish.coinpaprika.domain.usecase.GetCoinsUseCase
 import com.yatish.coinpaprika.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,7 +15,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CoinListViewModel @Inject constructor(
-    private val coinListUseCase: GetCoinsUseCase
+    private val coinListUseCase: GetCoinsUseCase,
+    private val coinErrorMapper: CoinErrorMapper,
 ) : ViewModel() {
 
     private val _state = mutableStateOf(CoinListState())
@@ -33,9 +36,7 @@ class CoinListViewModel @Inject constructor(
                         )
                     }
                     is Resource.Error -> {
-                        _state.value = CoinListState(
-                            error = result.message
-                        )
+                        updateErrorResult(result)
                     }
                     is Resource.Loading -> {
                         _state.value = CoinListState(
@@ -46,5 +47,11 @@ class CoinListViewModel @Inject constructor(
 
             }
         }
+    }
+
+    private fun updateErrorResult(result: Resource.Error<List<Coin>>) {
+        _state.value = CoinListState(
+            error = coinErrorMapper.mapToDomainLayer(result.errorEntity)
+        )
     }
 }

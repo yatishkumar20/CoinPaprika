@@ -10,12 +10,11 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import coil.compose.AsyncImage
 import com.google.accompanist.flowlayout.FlowRow
 import com.yatish.coinpaprika.presentation.coin_detail.component.CoinTag
 import com.yatish.coinpaprika.presentation.coin_detail.component.TeamList
@@ -45,12 +44,12 @@ fun CoinDetailScreen(
                         )
                         Spacer(modifier = Modifier.width(20.dp))
 
-                        Text(
-                            text = if(coin.isActive) "active" else "inactive",
-                            color = if(coin.isActive) Color.Green else Color.Red,
-                            style = MaterialTheme.typography.body2,
-                            fontStyle = FontStyle.Italic,
-                            textAlign = TextAlign.End,
+                        AsyncImage(
+                            model = coin.logo,
+                            contentDescription = coin.name,
+                            modifier = Modifier
+                                .height(24.dp)
+                                .width(24.dp)
                         )
                     }
                     Spacer(modifier = Modifier.height(15.dp))
@@ -91,7 +90,7 @@ fun CoinDetailScreen(
                 }
             }
         }
-        if(state.error?.isNotBlank() == true) {
+        if (state.error?.isNotBlank() == true) {
             Text(
                 text = state.error,
                 color = MaterialTheme.colors.error,
@@ -102,7 +101,7 @@ fun CoinDetailScreen(
                     .align(Alignment.Center)
             )
         }
-        if(state.isLoafing) {
+        if (state.isLoafing) {
             CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
         }
     }

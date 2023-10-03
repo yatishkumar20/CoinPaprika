@@ -5,6 +5,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.yatish.coinpaprika.data.mapper.CoinErrorMapper
+import com.yatish.coinpaprika.domain.model.CoinDetail
 import com.yatish.coinpaprika.domain.usecase.GetCoinDetailsUseCase
 import com.yatish.coinpaprika.util.Constants.PARAM_COIN_ID
 import com.yatish.coinpaprika.util.Resource
@@ -16,6 +18,7 @@ import javax.inject.Inject
 @HiltViewModel
 class CoinDetailsViewModel @Inject constructor(
     private val coinDetailsUseCase: GetCoinDetailsUseCase,
+    private val coinErrorMapper: CoinErrorMapper,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
@@ -39,9 +42,7 @@ class CoinDetailsViewModel @Inject constructor(
                         )
                     }
                     is Resource.Error -> {
-                        _state.value = CoinDetailState(
-                            error = result.message
-                        )
+                        updateErrorResult(result)
                     }
                     is Resource.Loading -> {
                         _state.value = CoinDetailState(
@@ -52,5 +53,11 @@ class CoinDetailsViewModel @Inject constructor(
 
             }
         }
+    }
+
+    private fun updateErrorResult(result: Resource.Error<CoinDetail>) {
+        _state.value = CoinDetailState(
+            error = coinErrorMapper.mapToDomainLayer(result.errorEntity)
+        )
     }
 }

@@ -7,12 +7,8 @@ import com.yatish.coinpaprika.di.IoDispatcher
 import com.yatish.coinpaprika.domain.error.ErrorHandler
 import com.yatish.coinpaprika.domain.model.Coin
 import com.yatish.coinpaprika.domain.model.CoinDetail
-import com.yatish.coinpaprika.util.Constants.NOT_FOUND
 import com.yatish.coinpaprika.util.Constants.NOT_FOUND_CODE
-import com.yatish.coinpaprika.util.Constants.TOO_MANY_REQUEST
 import com.yatish.coinpaprika.util.Constants.TOO_MANY_REQUEST_CODE
-import com.yatish.coinpaprika.util.Constants.UNKNOWN
-import com.yatish.coinpaprika.util.Constants.UNKNOWN_ERROR
 import com.yatish.coinpaprika.util.ErrorEntity
 import com.yatish.coinpaprika.util.Resource
 import kotlinx.coroutines.CoroutineDispatcher
@@ -32,45 +28,29 @@ class CoinRemoteDataSourceImpl @Inject constructor(
             try {
                 val coinsResponse = coinPaprikaApi.getCoins()
                 coinsResponse.body()?.let { response ->
-                    val coins = response.map { coinListResponseMapper.mapToDomainLayerModel(it) }
+                    val coins = response.map { coinListResponseMapper.mapToDomainLayer(it) }
                     return@withContext Resource.Success(data = coins)
                 } ?: run {
-                    val errorResult = getErrorResult(coinsResponse)
                     return@withContext Resource.Error(
-                        message = errorResult.first,
-                        errorEntity = errorResult.second,
-                        data = null
+                        errorEntity = getErrorResult(coinsResponse)
                     )
                 }
             } catch (e: Exception) {
-                val exceptionResult = getExceptionResult(e)
                 return@withContext Resource.Error(
-                    message = exceptionResult.first,
-                    errorEntity = exceptionResult.second,
-                    data = null
+                    errorEntity = getExceptionResult(e)
                 )
             }
         }
 
-    private fun getExceptionResult(e: Exception): Pair<String, ErrorEntity> {
-        return Pair(e.localizedMessage ?: UNKNOWN_ERROR, errorHandler.getErrorDetails(e))
+    private fun getExceptionResult(e: Exception): ErrorEntity {
+        return errorHandler.getErrorDetails(e)
     }
 
-    private fun <T> getErrorResult(response: Response<T>?): Pair<String, ErrorEntity> {
+    private fun <T> getErrorResult(response: Response<T>?): ErrorEntity {
         return when (response?.raw()?.code) {
-            NOT_FOUND_CODE -> Pair(
-                NOT_FOUND,
-                ErrorEntity.NotFound,
-            )
-
-            TOO_MANY_REQUEST_CODE -> Pair(
-                TOO_MANY_REQUEST,
-                ErrorEntity.TooManyRequests,
-            )
-            else -> Pair(
-                UNKNOWN,
-                ErrorEntity.Unknown,
-            )
+            NOT_FOUND_CODE -> ErrorEntity.NotFound
+            TOO_MANY_REQUEST_CODE -> ErrorEntity.TooManyRequests
+            else -> ErrorEntity.Unknown
         }
     }
 
@@ -80,22 +60,16 @@ class CoinRemoteDataSourceImpl @Inject constructor(
             try {
                 val coinDetailResponse = coinPaprikaApi.getCoinDetails(coinId = coinId)
                 coinDetailResponse.body()?.let { response ->
-                    val coinDetails = coinDetailResponseMapper.mapToDomainLayerModel(response)
+                    val coinDetails = coinDetailResponseMapper.mapToDomainLayer(response)
                     return@withContext Resource.Success(coinDetails)
                 } ?: run {
-                    val errorResult = getErrorResult(coinDetailResponse)
                     return@withContext Resource.Error(
-                        message = errorResult.first,
-                        errorEntity = errorResult.second,
-                        data = null
+                        errorEntity = getErrorResult(coinDetailResponse)
                     )
                 }
             } catch (e: Exception) {
-                val exceptionResult = getExceptionResult(e)
                 return@withContext Resource.Error(
-                    message = exceptionResult.first,
-                    errorEntity = exceptionResult.second,
-                    data = null
+                    errorEntity = getExceptionResult(e)
                 )
             }
         }

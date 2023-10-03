@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Coin Paprika</string>
+    <string name="not_found">Not found</string>
+    <string name="network_error">Network Error</string>
+    <string name="too_many_requests">Too many requests, please try after some time</string>
+    <string name="un_known">Unknown error</string>
 </resources>

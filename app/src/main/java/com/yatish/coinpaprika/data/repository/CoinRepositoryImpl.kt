@@ -3,8 +3,6 @@ package com.yatish.coinpaprika.data.repository
 import com.yatish.coinpaprika.domain.model.Coin
 import com.yatish.coinpaprika.domain.model.CoinDetail
 import com.yatish.coinpaprika.domain.repository.CoinRepository
-import com.yatish.coinpaprika.util.Constants.NOT_FOUND
-import com.yatish.coinpaprika.util.Constants.UNKNOWN_ERROR
 import com.yatish.coinpaprika.util.ErrorEntity
 import com.yatish.coinpaprika.util.Resource
 import kotlinx.coroutines.flow.Flow
@@ -29,7 +27,6 @@ class CoinRepositoryImpl @Inject constructor(
             is Resource.Error -> {
                 emit(
                     Resource.Error(
-                        message = result.message,
                         errorEntity = result.errorEntity,
                         data = result.data
                     )
@@ -38,7 +35,6 @@ class CoinRepositoryImpl @Inject constructor(
             else -> {
                 emit(
                     Resource.Error(
-                        message = UNKNOWN_ERROR,
                         errorEntity = ErrorEntity.Unknown
                     )
                 )
@@ -57,16 +53,13 @@ class CoinRepositoryImpl @Inject constructor(
                     )
                 } ?: emit(
                     Resource.Error(
-                        message = NOT_FOUND,
-                        errorEntity = ErrorEntity.NotFound,
-                        data = null
+                        errorEntity = ErrorEntity.NotFound
                     )
                 )
             }
             is Resource.Error -> {
                 emit(
                     Resource.Error(
-                        message = result.message,
                         errorEntity = result.errorEntity,
                         data = result.data
                     )
@@ -75,7 +68,6 @@ class CoinRepositoryImpl @Inject constructor(
             else -> {
                 emit(
                     Resource.Error(
-                        message = UNKNOWN_ERROR,
                         errorEntity = ErrorEntity.Unknown
                     )
                 )

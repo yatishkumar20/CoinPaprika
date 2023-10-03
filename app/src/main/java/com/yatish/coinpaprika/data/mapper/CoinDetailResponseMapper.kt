@@ -5,7 +5,7 @@ import com.yatish.coinpaprika.domain.model.CoinDetail
 import javax.inject.Inject
 
 class CoinDetailResponseMapper @Inject constructor(): Mapper<CoinDetail, CoinDetailDto> {
-    override fun mapToDomainLayerModel(input: CoinDetailDto): CoinDetail {
+    override fun mapToDomainLayer(input: CoinDetailDto): CoinDetail {
         return CoinDetail(
             id = input.id,
             name = input.name,
