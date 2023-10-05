@@ -1,9 +1,8 @@
 package com.yatish.coinpaprika.core
 
 import com.google.gson.Gson
-import com.yatish.coinpaprika.domain.model.Coin
-import com.yatish.coinpaprika.domain.model.CoinDetail
-import com.yatish.coinpaprika.util.Resource
+import com.yatish.domain.model.Coin
+import com.yatish.domain.model.CoinDetail
 
 object MockResponse {
     fun getMockCoins(): List<Coin> {

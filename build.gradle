@@ -9,3 +9,19 @@ plugins {
     id 'org.jetbrains.kotlin.android' version '1.7.0' apply false
     id 'com.google.dagger.hilt.android' version "2.44" apply false
 }
+
+ext {
+    hilt_android = "2.44"
+    hilt_compiler = "1.0.0"
+    hilt_compose = "1.1.0-alpha01"
+
+    retrofit = "2.9.0"
+    gson = "2.9.0"
+    okhttp = "5.0.0-alpha.2"
+    okhttp_interceptor = "5.0.0-alpha.2"
+
+    mockk = "1.12.3"
+    core_testing = "2.2.0"
+    coroutines_test = "1.6.2"
+    mockwebserver = "4.9.1"
+}

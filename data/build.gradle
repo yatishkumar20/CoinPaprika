@@ -1,0 +1,67 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+android {
+    namespace 'com.yatish.data'
+    compileSdk 33
+
+    defaultConfig {
+        minSdk 24
+        targetSdk 33
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+        buildConfigField 'String', 'BASE_URL', "\"https://api.coinpaprika.com/\""
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    implementation project(path: ':domain')
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.9.0'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    //Dagger - Hilt
+    implementation "com.google.dagger:hilt-android:${rootProject.ext.hilt_android}"
+    kapt "com.google.dagger:hilt-android-compiler:${rootProject.ext.hilt_android}"
+    kapt "androidx.hilt:hilt-compiler:${rootProject.ext.hilt_compiler}"
+    implementation "androidx.hilt:hilt-navigation-compose:${rootProject.ext.hilt_compose}"
+
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:${rootProject.ext.retrofit}"
+    implementation "com.squareup.retrofit2:converter-gson:${rootProject.ext.gson}"
+    implementation "com.squareup.okhttp3:okhttp:${rootProject.ext.okhttp}"
+    implementation "com.squareup.okhttp3:logging-interceptor:${rootProject.ext.okhttp_interceptor}"
+
+    //Test
+    testImplementation "io.mockk:mockk:${rootProject.ext.mockk}"
+    androidTestImplementation "io.mockk:${rootProject.ext.mockk}"
+    implementation "androidx.arch.core:core-testing:${rootProject.ext.core_testing}"
+    testImplementation "androidx.arch.core:core-testing:${rootProject.ext.core_testing}"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:${rootProject.ext.coroutines_test}"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:${rootProject.ext.coroutines_test}"
+    testImplementation "com.squareup.okhttp3:mockwebserver:${rootProject.ext.mockwebserver}"
+
+}

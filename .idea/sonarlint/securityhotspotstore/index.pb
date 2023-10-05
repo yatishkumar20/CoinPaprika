@@ -18,24 +18,14 @@ X
 :
 
 .gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
-?
-settings.gradle,0/5/05efc8b1657769a27696d478ded1e95f38737233
-P
- app/src/main/AndroidManifest.xml,8/c/8c55c3ccc257e5907959013f99656e4c8ec3903e
-<
-build.gradle,f/0/f07866736216be0ee2aba49e392191aeae700a35
 ž
 napp/build/generated/source/kapt/debug/com/yatish/coinpaprika/domain/usecase/GetCoinDetailsUseCase_Factory.java,3/a/3a25660a111d3a7febcb286642309fe6e1b11959
 ˜
 happ/build/generated/source/kapt/debug/com/yatish/coinpaprika/domain/usecase/GetCoinsUseCase_Factory.java,0/1/01a18f4e6edb64dbd86455c1d1c102d371be0548
 ˜
 happ/build/generated/source/kapt/debug/hilt_aggregated_deps/_com_yatish_coinpaprika_di_NetWorkModule.java,8/f/8fdce8056fc181979931e786593ff2a8fe39f284
-o
-?app/src/main/java/com/yatish/coinpaprika/di/RepositoryModule.kt,5/3/53a43f54578afd17648837d50f6067c486868fb0
 
 mapp/build/generated/source/kapt/debug/com/yatish/coinpaprika/presentation/MainActivity_GeneratedInjector.java,d/5/d5fdff6eaaba2ac1cde2329d4cf910c0518426c9
-l
-<app/src/main/java/com/yatish/coinpaprika/di/NetWorkModule.kt,9/7/976f46a317156b119302959c161a2f13e8431d29
 ¶
 …app/build/generated/source/kapt/debug/dagger/hilt/internal/aggregatedroot/codegen/_com_yatish_coinpaprika_CoinPaprikaApplication.java,5/5/558907f1e4712020c92e054d04dda0a9f1d7d0ca
 Ÿ
@@ -64,8 +54,6 @@ rapp/build/generated/source/kapt/debug/com/yatish/coinpaprika/data/repository/Co
 `app/build/generated/source/kapt/debug/com/yatish/coinpaprika/presentation/Hilt_MainActivity.java,7/c/7c423f8c4e20aefd5aeafd9d2a1c453bf6102c5b
 œ
 lapp/build/generated/source/kapt/debug/com/yatish/coinpaprika/data/mapper/CoinListResponseMapper_Factory.java,e/d/edcc1244bc7b3e7b51ff16ee9dc49f1adcc96527
-r
-Bapp/src/main/java/com/yatish/coinpaprika/CoinPaprikaApplication.kt,a/a/aa64efd253b74b8a19902a817d1310763258d55a
 É
 ˜app/build/generated/source/kapt/debug/hilt_aggregated_deps/_com_yatish_coinpaprika_presentation_coin_list_CoinListViewModel_HiltModules_BindsModule.java,d/4/d479bb0ec8154cc2e53bbfb92b677d52789f94f6
 Ç
@@ -122,12 +110,6 @@ p
 @app/src/main/java/com/yatish/coinpaprika/data/remote/dto/Team.kt,1/a/1ac7e3f8e4014f92c25a65401edeb777b7418472
 †
 Vapp/src/main/java/com/yatish/coinpaprika/presentation/coin_detail/component/CoinTag.kt,2/5/2528a232bb068c4d1d6c4b1c4f7c984591c57100
-„
-Tapp/src/main/java/com/yatish/coinpaprika/presentation/coin_detail/CoinDetailState.kt,a/3/a39f5891b6e7998997c76d4ee579041e82938b9f
-z
-Japp/src/main/java/com/yatish/coinpaprika/di/CoroutinesDispatchersModule.kt,1/a/1a480d761b38fef4d43ee0507a5fb178db8b4994
-‡
-Wapp/src/main/java/com/yatish/coinpaprika/presentation/coin_detail/component/TeamList.kt,4/e/4e152ed057145d0bb46dac3c1008c794e291447d
 q
 Aapp/src/main/java/com/yatish/coinpaprika/data/remote/dto/Links.kt,9/b/9baa720fb7d2fbcd37764ec3d21e6418573f9895
 w
@@ -148,15 +130,7 @@ l
 <app/src/main/java/com/yatish/coinpaprika/util/ErrorEntity.kt,3/c/3cadd7741a127a22f042a9f34ac0d1abec49c3f6
 „
 Tapp/src/main/java/com/yatish/coinpaprika/data/repository/CoinRemoteDataSourceImpl.kt,1/3/1311d4085ae5bbf3dd88a3924213f290fbb40e02
-w
-Gapp/src/main/java/com/yatish/coinpaprika/data/mapper/CoinErrorMapper.kt,b/7/b7b88c7e2ea9c46ff0791a3fbe0016c790a9234f
-…
-Uapp/src/main/java/com/yatish/coinpaprika/presentation/coin_detail/CoinDetailScreen.kt,b/6/b687e556fb8ecbeda6e92cf25423f35d6ad5b1a5
 j
 :app/src/main/java/com/yatish/coinpaprika/util/Constants.kt,a/7/a7523637d5851c87489c4b21cf31711dabc396e5
-~
-Napp/src/main/java/com/yatish/coinpaprika/data/mapper/CoinListResponseMapper.kt,9/4/9443356ea3b6f8ea95dfdf1d70af33cab4923ab7
-€
-Papp/src/main/java/com/yatish/coinpaprika/data/mapper/CoinDetailResponseMapper.kt,c/e/cefaf2b028c2f7f4f8686df4a4e802b83f3e1d70
 w
 Gapp/src/main/java/com/yatish/coinpaprika/data/error/ErrorHandlerImpl.kt,e/f/efbe95749f321712dc55ee98f201856fe846d21b
