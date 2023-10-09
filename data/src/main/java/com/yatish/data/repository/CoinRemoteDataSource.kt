@@ -1,6 +1,6 @@
 package com.yatish.data.repository
 
-import com.yatish.domain.util.Resource
+import com.yatish.common.util.Resource
 import com.yatish.domain.model.Coin
 import com.yatish.domain.model.CoinDetail
 

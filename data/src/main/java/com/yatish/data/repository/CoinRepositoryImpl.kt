@@ -1,7 +1,7 @@
 package com.yatish.data.repository
 
-import com.yatish.domain.util.ErrorEntity
-import com.yatish.domain.util.Resource
+import com.yatish.common.util.ErrorEntity
+import com.yatish.common.util.Resource
 import com.yatish.domain.model.Coin
 import com.yatish.domain.model.CoinDetail
 import com.yatish.domain.repository.CoinRepository
@@ -16,19 +16,14 @@ class CoinRepositoryImpl @Inject constructor(
         emit(Resource.Loading())
         when (val result = remoteDataSource.getCoins()) {
             is Resource.Success -> {
-                result.data?.let {
-                    emit(
-                        Resource.Success(it)
-                    )
-                } ?: emit(
-                    Resource.Success(emptyList())
+                emit(
+                    Resource.Success(result.data)
                 )
             }
             is Resource.Error -> {
                 emit(
                     Resource.Error(
-                        errorEntity = result.errorEntity,
-                        data = result.data
+                        errorEntity = result.errorEntity
                     )
                 )
             }
@@ -47,21 +42,14 @@ class CoinRepositoryImpl @Inject constructor(
         emit(Resource.Loading())
         when (val result = remoteDataSource.getCoinDetails(coinId)) {
             is Resource.Success -> {
-                result.data?.let {
-                    emit(
-                        Resource.Success(it)
-                    )
-                } ?: emit(
-                    Resource.Error(
-                        errorEntity = ErrorEntity.NotFound
-                    )
+                emit(
+                    Resource.Success(result.data)
                 )
             }
             is Resource.Error -> {
                 emit(
                     Resource.Error(
-                        errorEntity = result.errorEntity,
-                        data = result.data
+                        errorEntity = result.errorEntity
                     )
                 )
             }

@@ -16,3 +16,5 @@ rootProject.name = "Coin Paprika"
 include ':app'
 include ':data'
 include ':domain'
+include ':common'
+include ':feature:cryptocurrency'

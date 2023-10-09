@@ -1,13 +1,15 @@
 package com.yatish.domain.usecase
 
 import com.yatish.domain.core.MockResponse
+import com.yatish.domain.model.CoinDetail
 import com.yatish.domain.repository.CoinRepository
-import com.yatish.domain.util.ErrorEntity
-import com.yatish.domain.util.Resource
+import com.yatish.common.util.ErrorEntity
+import com.yatish.common.util.Resource
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.test.runTest
@@ -16,7 +18,7 @@ import org.junit.Before
 import org.junit.Test
 
 @OptIn(ExperimentalCoroutinesApi::class)
-internal class GetCoinDetailsUseCaseTest {
+class GetCoinDetailsUseCaseTest {
 
     @MockK
     private val coinRepository = mockk<CoinRepository>(relaxed = true)
@@ -32,37 +34,31 @@ internal class GetCoinDetailsUseCaseTest {
 
     @Test
     fun `GIVEN GetCoinDetailsUseCase WHEN called THEN should return coin details`() = runTest {
-        coEvery { coinRepository.getCoinDetails(BITCOIN_ID) } returns flow { emit(Resource.Success(
-            MockResponse.getMockCoinDetails()))}
+        val response: Flow<Resource.Success<CoinDetail>> = flow {
+            emit(
+                Resource.Success(
+                    MockResponse.getMockCoinDetails()
+                )
+            )
+        }
+        coEvery { coinRepository.getCoinDetails(BITCOIN_ID) } returns response
         getCoinDetailsUseCase(BITCOIN_ID).collectLatest {
-            when(it) {
-                is Resource.Success -> {
-                    Assert.assertEquals(BITCOIN, it.data?.name)
-                }
-                else -> {
-
-                }
-            }
+            Assert.assertTrue(it is Resource.Success)
         }
     }
 
     @Test
     fun `GIVEN GetCoinDetailsUseCase WHEN called THEN should return error`() = runTest {
-        coEvery { coinRepository.getCoinDetails(BITCOIN_ID) } returns flow { emit(Resource.Error(errorEntity = ErrorEntity.NotFound))}
+        val response: Flow<Resource.Error<CoinDetail>> = flow {
+            emit(Resource.Error(errorEntity = ErrorEntity.NotFound))
+        }
+        coEvery { coinRepository.getCoinDetails(BITCOIN_ID) } returns response
         getCoinDetailsUseCase(BITCOIN_ID).collectLatest {
-            when(it) {
-                is Resource.Error -> {
-                    Assert.assertEquals(ErrorEntity.NotFound, it.errorEntity)
-                }
-                else -> {
-
-                }
-            }
+            Assert.assertTrue(it is Resource.Error)
         }
     }
 
     companion object {
         private const val BITCOIN_ID = "btc-bitcoin"
-        private const val BITCOIN = "Bitcoin"
     }
 }

@@ -2,7 +2,7 @@ package com.yatish.domain.repository
 
 import com.yatish.domain.model.Coin
 import com.yatish.domain.model.CoinDetail
-import com.yatish.domain.util.Resource
+import com.yatish.common.util.Resource
 import kotlinx.coroutines.flow.Flow
 
 interface CoinRepository {

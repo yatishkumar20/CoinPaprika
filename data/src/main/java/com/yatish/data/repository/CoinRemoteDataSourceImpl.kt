@@ -1,13 +1,13 @@
 package com.yatish.data.repository
 
+import com.yatish.common.util.ErrorEntity
+import com.yatish.common.util.Resource
 import com.yatish.data.mapper.CoinDetailResponseMapper
 import com.yatish.data.mapper.CoinListResponseMapper
 import com.yatish.data.remote.CoinPaprikaApi
 import com.yatish.data.di.IoDispatcher
-import com.yatish.domain.util.Constants.NOT_FOUND_CODE
-import com.yatish.domain.util.Constants.TOO_MANY_REQUEST_CODE
-import com.yatish.domain.util.ErrorEntity
-import com.yatish.domain.util.Resource
+import com.yatish.data.util.Constants.NOT_FOUND_CODE
+import com.yatish.data.util.Constants.TOO_MANY_REQUEST_CODE
 import com.yatish.domain.error.ErrorHandler
 import com.yatish.domain.model.Coin
 import com.yatish.domain.model.CoinDetail

@@ -8,6 +8,7 @@ plugins {
     id 'com.android.library' version '7.4.2' apply false
     id 'org.jetbrains.kotlin.android' version '1.7.0' apply false
     id 'com.google.dagger.hilt.android' version "2.44" apply false
+    id 'org.jetbrains.kotlin.jvm' version '1.7.0' apply false
 }
 
 ext {
@@ -24,4 +25,7 @@ ext {
     core_testing = "2.2.0"
     coroutines_test = "1.6.2"
     mockwebserver = "4.9.1"
+
+    coil = "2.4.0"
+    flow_row = "0.17.0"
 }

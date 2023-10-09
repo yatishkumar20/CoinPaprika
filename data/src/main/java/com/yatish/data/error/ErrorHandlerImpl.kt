@@ -1,6 +1,6 @@
 package com.yatish.data.error
 
-import com.yatish.domain.util.ErrorEntity
+import com.yatish.common.util.ErrorEntity
 import com.yatish.domain.error.ErrorHandler
 import retrofit2.HttpException
 import java.io.IOException
