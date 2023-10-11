@@ -37,7 +37,7 @@ class CoinRemoteDataSourceImplTest {
 
     @Before
     fun init() {
-        MockKAnnotations.init(this, relaxUnitFun = true)
+        MockKAnnotations.init(this)
         coinRemoteDataSource = CoinRemoteDataSourceImpl(
             dispatcher = dispatcher,
             coinPaprikaApi = apiService,

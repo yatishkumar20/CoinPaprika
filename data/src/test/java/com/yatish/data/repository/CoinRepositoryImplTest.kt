@@ -24,7 +24,7 @@ class CoinRepositoryImplTest {
     val instantExecutorRule = InstantTaskExecutorRule()
 
     @MockK
-    private val remoteDataSource = mockk<CoinRemoteDataSource>(relaxed = true)
+    private val remoteDataSource = mockk<CoinRemoteDataSource>()
 
     private lateinit var coinRepository: CoinRepository
 

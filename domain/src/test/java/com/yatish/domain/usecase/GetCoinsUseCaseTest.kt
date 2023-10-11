@@ -21,7 +21,7 @@ import org.junit.Test
 class GetCoinsUseCaseTest {
 
     @MockK
-    private val coinRepository = mockk<CoinRepository>(relaxed = true)
+    private val coinRepository = mockk<CoinRepository>()
 
     private lateinit var getCoinUseCase: GetCoinsUseCase
 
