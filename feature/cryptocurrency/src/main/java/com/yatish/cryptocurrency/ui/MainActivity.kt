@@ -1,10 +1,10 @@
-package com.yatish.coinpaprika.ui
+package com.yatish.cryptocurrency.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.yatish.coinpaprika.ui.theme.CoinPaprikaTheme
-import com.yatish.cryptocurrency.ui.CoinApp
+import androidx.navigation.compose.rememberNavController
+import com.yatish.cryptocurrency.theme.CoinPaprikaTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -12,8 +12,9 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            val navController = rememberNavController()
             CoinPaprikaTheme {
-                CoinApp()
+                NavigationGraph(navController = navController)
             }
         }
     }

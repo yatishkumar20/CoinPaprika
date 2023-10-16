@@ -20,69 +20,67 @@ import com.yatish.feature.cryptocurrency.R
 fun CoinDetailsView(
     coinDetails: CoinDetail
 ) {
-    coinDetails.let { coin ->
-        LazyColumn(
-            modifier = Modifier.fillMaxWidth(),
-            contentPadding = PaddingValues(20.dp)
-        ) {
-            item {
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
-                    TextView(
-                        text = "${coin.rank}. ${coin.name} (${coin.symbol})",
-                        style = MaterialTheme.typography.body1,
-                        overflow = TextOverflow.Ellipsis,
-                        maxLines = 1,
-                        modifier = Modifier.weight(1f),
-                    )
-                    Spacer(modifier = Modifier.width(20.dp))
+    LazyColumn(
+        modifier = Modifier.fillMaxWidth(),
+        contentPadding = PaddingValues(20.dp)
+    ) {
+        item {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                TextView(
+                    text = "${coinDetails.rank}. ${coinDetails.name} (${coinDetails.symbol})",
+                    style = MaterialTheme.typography.body1,
+                    overflow = TextOverflow.Ellipsis,
+                    maxLines = 1,
+                    modifier = Modifier.weight(1f),
+                )
+                Spacer(modifier = Modifier.width(20.dp))
 
-                    AsyncImage(
-                        model = coin.logo,
-                        contentDescription = coin.name,
-                        modifier = Modifier
-                            .height(24.dp)
-                            .width(24.dp)
-                    )
-                }
-                Spacer(modifier = Modifier.height(15.dp))
-                TextView(
-                    text = coin.description,
-                    style = MaterialTheme.typography.body2
-                )
-                Spacer(modifier = Modifier.height(15.dp))
-                TextView(
-                    text = stringResource(id = R.string.tags),
-                    style = MaterialTheme.typography.h6
-                )
-                Spacer(modifier = Modifier.height(15.dp))
-                FlowRow(
-                    mainAxisSpacing = 10.dp,
-                    crossAxisSpacing = 10.dp,
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    coin.tags.forEach { tag ->
-                        CoinTag(tag = tag)
-                    }
-                }
-                Spacer(modifier = Modifier.height(15.dp))
-                TextView(
-                    text = stringResource(id = R.string.team_members),
-                    style = MaterialTheme.typography.h6
-                )
-                Spacer(modifier = Modifier.height(15.dp))
-            }
-            items(coin.team) { team ->
-                TeamList(
-                    team = team,
+                AsyncImage(
+                    model = coinDetails.logo,
+                    contentDescription = coinDetails.name,
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(10.dp)
+                        .height(24.dp)
+                        .width(24.dp)
                 )
-                Divider()
             }
+            Spacer(modifier = Modifier.height(15.dp))
+            TextView(
+                text = coinDetails.description,
+                style = MaterialTheme.typography.body2
+            )
+            Spacer(modifier = Modifier.height(15.dp))
+            TextView(
+                text = stringResource(id = R.string.tags),
+                style = MaterialTheme.typography.h6
+            )
+            Spacer(modifier = Modifier.height(15.dp))
+            FlowRow(
+                mainAxisSpacing = 10.dp,
+                crossAxisSpacing = 10.dp,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                coinDetails.tags.forEach { tag ->
+                    CoinTag(tag = tag)
+                }
+            }
+            Spacer(modifier = Modifier.height(15.dp))
+            TextView(
+                text = stringResource(id = R.string.team_members),
+                style = MaterialTheme.typography.h6
+            )
+            Spacer(modifier = Modifier.height(15.dp))
+        }
+        items(coinDetails.team) { team ->
+            TeamList(
+                team = team,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(10.dp)
+            )
+            Divider()
         }
     }
 }

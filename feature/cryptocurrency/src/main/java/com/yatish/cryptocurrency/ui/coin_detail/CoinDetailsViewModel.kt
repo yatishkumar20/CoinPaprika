@@ -23,7 +23,7 @@ class CoinDetailsViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    private val _state = mutableStateOf<CoinState>(CoinState.Loading(false))
+    private val _state = mutableStateOf<CoinState>(CoinState.Loading(true))
     val state: State<CoinState> = _state
 
     init {
@@ -38,11 +38,7 @@ class CoinDetailsViewModel @Inject constructor(
 
                 when (result) {
                     is Resource.Success -> {
-                        _state.value = result.data.let {
-                            CoinState.Success(
-                                it
-                            )
-                        }
+                        _state.value = CoinState.Success(result.data)
                     }
                     is Resource.Error -> {
                         updateErrorResult(result)

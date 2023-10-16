@@ -13,7 +13,6 @@ class CoinRepositoryImpl @Inject constructor(
     private val remoteDataSource: CoinRemoteDataSource
 ) : CoinRepository {
     override fun getCoins(): Flow<Resource<List<Coin>>> = flow {
-        emit(Resource.Loading())
         when (val result = remoteDataSource.getCoins()) {
             is Resource.Success -> {
                 emit(
@@ -38,8 +37,6 @@ class CoinRepositoryImpl @Inject constructor(
     }
 
     override fun getCoinDetails(coinId: String): Flow<Resource<CoinDetail>> = flow {
-
-        emit(Resource.Loading())
         when (val result = remoteDataSource.getCoinDetails(coinId)) {
             is Resource.Success -> {
                 emit(

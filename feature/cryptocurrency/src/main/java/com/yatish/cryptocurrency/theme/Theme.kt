@@ -1,4 +1,4 @@
-package com.yatish.coinpaprika.ui.theme
+package com.yatish.cryptocurrency.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme

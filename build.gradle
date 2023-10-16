@@ -24,7 +24,6 @@ ext {
     mockk = "1.12.3"
     core_testing = "2.2.0"
     coroutines_test = "1.6.2"
-    mockwebserver = "4.9.1"
 
     coil = "2.4.0"
     flow_row = "0.17.0"

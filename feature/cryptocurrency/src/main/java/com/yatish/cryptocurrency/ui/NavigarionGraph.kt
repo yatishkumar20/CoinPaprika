@@ -21,7 +21,7 @@ fun NavigationGraph(
             CoinListScreen(navController = navController)
         }
         composable(route = Screen.CoinDetailsScreen.route + "/{${PARAM_COIN_ID}}" + "/{${PARAM_COIN_NAME}}") {
-            CoinDetailScreen()
+            CoinDetailScreen(navController = navController)
         }
     }
 }

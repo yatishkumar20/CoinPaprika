@@ -20,7 +20,7 @@ class CoinListViewModel @Inject constructor(
     private val coinErrorMapper: CoinErrorMapper,
 ) : ViewModel() {
 
-    private val _state = mutableStateOf<CoinState>(CoinState.Loading(false))
+    private val _state = mutableStateOf<CoinState>(CoinState.Loading(true))
     val state: State<CoinState> = _state
 
     init {
@@ -32,8 +32,7 @@ class CoinListViewModel @Inject constructor(
             coinListUseCase().collectLatest { result ->
                 when (result) {
                     is Resource.Success -> {
-                        _state.value =
-                            result.data.let { CoinState.Success(it) }
+                        _state.value = CoinState.Success(result.data)
                     }
                     is Resource.Error -> {
                         updateErrorResult(result)
