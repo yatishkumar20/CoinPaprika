@@ -71,23 +71,6 @@ class CoinDetailsViewModelTest {
         Assert.assertTrue(viewModel.state.value is CoinState.Error)
     }
 
-    @Test
-    fun `GIVEN GetCoinDetailsUseCase WHEN invoked THEN should return loading state`() = runTest {
-        val savedState = SavedStateHandle(mapOf(COIN_ID_KEY to COIN_ID_VALUE))
-        coEvery { coinDetailUseCase.invoke(COIN_ID_VALUE) } returns flow {
-            emit(
-                Resource.Loading()
-            )
-        }
-
-        viewModel = CoinDetailsViewModel(
-            coinDetailUseCase,
-            coinErrorMapper,
-            savedState
-        )
-        Assert.assertTrue(viewModel.state.value is CoinState.Loading)
-    }
-
     companion object {
         private const val COIN_ID_KEY = "coinId"
         private const val COIN_ID_VALUE = "btc-bitcoin"

@@ -23,8 +23,8 @@ class CoinDetailsViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    private val _state = mutableStateOf<CoinState>(CoinState.Loading(true))
-    val state: State<CoinState> = _state
+    private val _state = mutableStateOf<CoinState<CoinDetail>>(CoinState.Loading(true))
+    val state: State<CoinState<CoinDetail>> = _state
 
     init {
         savedStateHandle.get<String>(PARAM_COIN_ID)?.let { coinId ->
@@ -42,11 +42,6 @@ class CoinDetailsViewModel @Inject constructor(
                     }
                     is Resource.Error -> {
                         updateErrorResult(result)
-                    }
-                    is Resource.Loading -> {
-                        _state.value = CoinState.Loading(
-                            true
-                        )
                     }
                 }
 

@@ -27,13 +27,9 @@ fun CoinListComponent(
     Box(modifier = Modifier.fillMaxSize()) {
 
         when (state) {
-            is CoinState.Success<*> -> {
-                val dataList = state.data as List<*>?
-                val coins = dataList?.let { item ->
-                    item.map { it as Coin }
-                } ?: emptyList()
+            is CoinState.Success -> {
                 CoinListView(
-                    coins = coins,
+                    coins = state.data,
                     navController = navController
                 )
             }

@@ -53,16 +53,6 @@ class CoinListViewModelTest {
         Assert.assertTrue(viewModel.state.value is CoinState.Error)
     }
 
-    @Test
-    fun `GIVEN CoinUseCase WHEN invoked THEN should return loading state`() = runTest {
-        coEvery { coinsUseCase.invoke() } returns flow { emit(Resource.Loading()) }
-        viewModel = CoinListViewModel(
-            coinsUseCase,
-            coinErrorMapper
-        )
-        Assert.assertTrue(viewModel.state.value is CoinState.Loading)
-    }
-
     companion object {
         private const val NETWORK_ERROR = "Network Error"
     }

@@ -1,7 +1,7 @@
 package com.yatish.cryptocurrency.ui
 
-sealed class CoinState {
-    class Success<T: Any>(val data: T) : CoinState()
-    class Error(val error: String) : CoinState()
-    class Loading(val loading: Boolean) : CoinState()
+sealed class CoinState<T: Any> {
+    class Success<T: Any>(val data: T) : CoinState<T>()
+    class Error<T: Any>(val error: String) : CoinState<T>()
+    class Loading<T: Any>(val loading: Boolean) : CoinState<T>()
 }
